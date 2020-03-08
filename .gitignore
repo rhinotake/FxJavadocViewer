@@ -4,5 +4,6 @@
 build/
 out/
 
+.attach_pid*
 *.zip
 xx*
