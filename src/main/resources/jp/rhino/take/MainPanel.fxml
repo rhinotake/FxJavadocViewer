@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -29,140 +28,151 @@
             <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
          </rowConstraints>
          <children>
-            <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" GridPane.rowIndex="1">
-              <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <GridPane layoutX="-10.0" layoutY="63.0" prefHeight="398.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                              <RowConstraints vgrow="NEVER" />
-                              <RowConstraints vgrow="NEVER" />
-                           </rowConstraints>
+            <GridPane GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="NEVER" />
+                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <SplitPane dividerPositions="0.29797979797979796" prefHeight="400.0" prefWidth="600.0" GridPane.rowIndex="1">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-                                <items>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                       <children>
-                                          <SplitPane dividerPositions="0.5" layoutX="-1.0" layoutY="-70.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <items>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <GridPane prefHeight="104.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints vgrow="NEVER" />
-                                                            <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <Label text="Modules" />
-                                                            <ListView fx:id="_moduleList" prefHeight="50.0" GridPane.rowIndex="1" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </AnchorPane>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                                   <children>
-                                                      <GridPane prefHeight="104.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <columnConstraints>
-                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                                         </columnConstraints>
-                                                         <rowConstraints>
-                                                            <RowConstraints vgrow="NEVER" />
-                                                            <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                                                         </rowConstraints>
-                                                         <children>
-                                                            <Label text="Packages" />
-                                                            <ListView fx:id="_packageList" prefHeight="50.0" GridPane.rowIndex="1" />
-                                                         </children>
-                                                      </GridPane>
-                                                   </children>
-                                                </AnchorPane>
-                                            </items>
-                                          </SplitPane>
-                                       </children>
-                                    </AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                       <children>
-                                          <GridPane prefHeight="217.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints vgrow="NEVER" />
-                                                <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-                                             </rowConstraints>
+                              <GridPane layoutX="-10.0" layoutY="63.0" prefHeight="398.0" prefWidth="174.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                                    <RowConstraints vgrow="NEVER" />
+                                    <RowConstraints vgrow="NEVER" />
+                                 </rowConstraints>
+                                 <children>
+                                    <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                              <children>
-                                                <Label text="Classes" />
-                                                <ListView fx:id="_classList" prefHeight="50.0" GridPane.rowIndex="1" />
+                                                <SplitPane dividerPositions="0.5" layoutX="-1.0" layoutY="-70.0" orientation="VERTICAL" prefHeight="95.0" prefWidth="158.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <GridPane prefHeight="104.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints vgrow="NEVER" />
+                                                                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label text="Modules" />
+                                                                  <ListView fx:id="_modulesList" prefHeight="50.0" GridPane.rowIndex="1" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                         <children>
+                                                            <GridPane prefHeight="104.0" prefWidth="207.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints vgrow="NEVER" />
+                                                                  <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label text="Packages" />
+                                                                  <ListView fx:id="_packagesList" prefHeight="50.0" GridPane.rowIndex="1" />
+                                                               </children>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                  </items>
+                                                </SplitPane>
                                              </children>
-                                          </GridPane>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <GridPane prefHeight="217.0" prefWidth="209.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints vgrow="NEVER" />
+                                                      <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label text="Classes" />
+                                                      <ListView fx:id="_classesList" prefHeight="50.0" GridPane.rowIndex="1" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                    <AnchorPane GridPane.rowIndex="1">
+                                       <children>
+                                          <Label fx:id="_constantValuesLabel" layoutX="57.0" layoutY="6.0" prefHeight="30.0" prefWidth="211.0" text="Constant values" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
-                                </items>
-                              </SplitPane>
-                              <AnchorPane GridPane.rowIndex="1">
-                                 <children>
-                                    <Label fx:id="_constantValuesLabel" layoutX="57.0" layoutY="6.0" prefHeight="30.0" prefWidth="211.0" text="Constant values" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <AnchorPane GridPane.rowIndex="2">
+                                       <children>
+                                          <Label fx:id="_deprecatedLabel" layoutX="79.0" layoutY="6.0" prefHeight="30.0" prefWidth="211.0" text="Deprecated" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
-                              </AnchorPane>
-                              <AnchorPane GridPane.rowIndex="2">
-                                 <children>
-                                    <Label fx:id="_deprecatedLabel" layoutX="79.0" layoutY="6.0" prefHeight="30.0" prefWidth="211.0" text="Deprecated" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
+                              </GridPane>
                            </children>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                     <children>
-                        <TabPane layoutX="28.0" layoutY="34.0" prefHeight="398.0" prefWidth="416.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <tabs>
-                            <Tab text="Untitled Tab 1">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <GridPane prefHeight="365.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <WebView fx:id="_webView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                                    <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <GridPane layoutX="14.0" layoutY="55.0" prefHeight="365.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                             </columnConstraints>
-                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                             </rowConstraints>
-                                             <children>
-                                                <WebView fx:id="_webView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                                                <HBox>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" text="&lt;=" />
-                                                      <Button mnemonicParsing="false" text="=&gt;" />
-                                                      <TextField fx:id="_url" />
-                                                      <Button mnemonicParsing="false" text="Reload" />
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </GridPane>
+                                          <ComboBox fx:id="_modulesComboBox" />
+                                          <ComboBox fx:id="_packagesComboBox" />
+                                          <ComboBox fx:id="_typesComboBox" />
+                                          <ComboBox fx:id="_classesComboBox" />
                                        </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab text="Untitled Tab 2">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                              </content>
-                            </Tab>
-                          </tabs>
-                        </TabPane>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <GridPane>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" text="&lt;=" />
+                        <Button mnemonicParsing="false" text="=&gt;" GridPane.columnIndex="1" />
+                        <TextField fx:id="_url" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" text="Reload" GridPane.columnIndex="3" />
                      </children>
-                  </AnchorPane>
-              </items>
-            </SplitPane>
+                  </GridPane>
+               </children>
+            </GridPane>
             <MenuBar>
               <menus>
                 <Menu mnemonicParsing="false" text="File">

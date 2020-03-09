@@ -22,6 +22,16 @@ data class PackageName(val name: String) {
 
 /**
  */
+enum class ClassTypes {
+  ALL_TYPES,
+  INTERFACES,
+  CLASSES,
+  EXCEPTIONS,
+  ENUMS,
+}
+
+/**
+ */
 data class ClassName(val name: String) {
   override fun toString() = name
 }
