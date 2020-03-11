@@ -46,7 +46,7 @@ class MainPanel {
   private lateinit var _packagesComboBox: ComboBox<PackageInfo>
 
   @FXML
-  private lateinit var _typesComboBox: ComboBox<ClassTypes>
+  private lateinit var _typesComboBox: ComboBox<ClassTypeName>
 
   @FXML
   private lateinit var _classesComboBox: ComboBox<ClassInfo>
@@ -112,6 +112,7 @@ class MainPanel {
       if (nv != null) {
 
         _classesList.items.setAll(elementList.classInfoList.find(nv))
+        _typesComboBox.items.setAll(listOf(ClassTypeName.ALL) + elementList.classInfoList.classTypeNameList(nv))
         //        val url = javadocBase.url(moduleName.name.name, nv.name.name.replace('.', '/'), "package-summary.html")
         val url = javadocBase.url(nv.path.toString())
         println("url: ${url}")
@@ -130,23 +131,36 @@ class MainPanel {
     //
     _modulesComboBox.itemsProperty().bind(_modulesList.itemsProperty())
     _packagesComboBox.itemsProperty().bind(_packagesList.itemsProperty())
-    _typesComboBox.items.setAll(Arrays.asList(*ClassTypes.values()))
+//    _typesComboBox.items.setAll(Arrays.asList(*ClassTypes.values()))
     _classesComboBox.itemsProperty().bind(_classesList.itemsProperty())
 
     _modulesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _modulesList.selectionModel.select(nv)
-      _modulesList.scrollTo(nv)
+      if(_modulesComboBox.isFocused){
+        _modulesList.scrollTo(nv)
+      }
     }
     _modulesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _modulesComboBox.selectionModel.select(nv) }
+
     _packagesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _packagesList.selectionModel.select(nv)
-      _packagesList.scrollTo(nv)
+      if(_packagesComboBox.isFocused){
+        _packagesList.scrollTo(nv)
+      }
     }
     _packagesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _packagesComboBox.selectionModel.select(nv) }
+
     _classesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _classesList.selectionModel.select(nv)
-      _classesList.scrollTo(nv)
+      if(_classesComboBox.isFocused) {
+        _classesList.scrollTo(nv)
+      }
     }
     _classesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _classesComboBox.selectionModel.select(nv) }
+
+    //
+    _webView.engine.locationProperty().addListener{_,_,nv ->
+      _url.text = nv
+    }
   }
 }

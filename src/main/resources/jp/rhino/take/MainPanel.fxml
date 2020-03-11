@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
 
-
 <AnchorPane prefHeight="537.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jp.rhino.take.MainPanel">
    <children>
       <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -103,11 +102,18 @@
                                                    </columnConstraints>
                                                    <rowConstraints>
                                                       <RowConstraints vgrow="NEVER" />
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                                                       <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
                                                    </rowConstraints>
                                                    <children>
                                                       <Label text="Classes" />
-                                                      <ListView fx:id="_classesList" prefHeight="50.0" GridPane.rowIndex="1" />
+                                                      <ListView fx:id="_classesList" prefHeight="50.0" GridPane.rowIndex="2" />
+                                                      <HBox alignment="CENTER_RIGHT" GridPane.rowIndex="1">
+                                                         <children>
+                                                            <Button fx:id="_allClassType" mnemonicParsing="false" text="Mix" />
+                                                            <Button fx:id="_groupingClassType" mnemonicParsing="false" text="Typed" />
+                                                         </children>
+                                                      </HBox>
                                                    </children>
                                                 </GridPane>
                                              </children>

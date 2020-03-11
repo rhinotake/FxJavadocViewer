@@ -20,14 +20,24 @@ data class PackageName(val name: String) {
   override fun toString() = name
 }
 
+///**
+// */
+//enum class ClassTypes {
+//  ALL_TYPES,
+//  INTERFACES,
+//  CLASSES,
+//  EXCEPTIONS,
+//  ENUMS,
+//}
+
 /**
  */
-enum class ClassTypes {
-  ALL_TYPES,
-  INTERFACES,
-  CLASSES,
-  EXCEPTIONS,
-  ENUMS,
+data class ClassTypeName(val name: String) {
+  override fun toString() = name
+
+  companion object {
+    val ALL = ClassTypeName(name = "ALL TYPES")
+  }
 }
 
 /**
@@ -66,7 +76,7 @@ data class PackageInfo(val name: PackageName, val path: Path, val moduleInfo: Mo
 
 /**
  */
-data class ClassInfo(val name: ClassName, val path: Path, val packageInfo: PackageInfo) :
+data class ClassInfo(val name: ClassName, val path: Path, val packageInfo: PackageInfo, val classTypeName: ClassTypeName) :
     Comparable<ClassInfo> {
   override fun compareTo(other: ClassInfo): Int =
       name.name.compareTo(other.name.name).let { it ->
@@ -112,7 +122,7 @@ data class ModuleInfoList(val list: List<ModuleInfo>) {
         }
       }
 
-      return ModuleInfoList(list = list.toList().sorted())
+      return ModuleInfoList(list = list.toList())
     }
   }
 }
@@ -151,11 +161,14 @@ data class PackageInfoList(val list: List<PackageInfo>) {
         }
       }
 
-      return PackageInfoList(list = list.toList().sorted())
+      return PackageInfoList(list = list.toList())
     }
   }
 }
 
+/**
+ */
+data class ClassTypeNameList(val list: List<ClassTypeName>)
 
 /**
  */
@@ -171,26 +184,58 @@ data class ClassInfoList(val list: List<ClassInfo>) {
 
   /**
    */
+  fun find(packageInfo: PackageInfo, classTypeName: ClassTypeName): List<ClassInfo> =
+      if (classTypeName == ClassTypeName.ALL) {
+        find(packageInfo)
+      } else {
+        find(packageInfo).filter { it.classTypeName == classTypeName }
+      }
+
+  /**
+   */
+  fun classTypeNameList(packageInfo: PackageInfo): List<ClassTypeName> =
+      find(packageInfo).map { it.classTypeName }.distinct()
+
+  /**
+   */
   companion object {
     /**
      */
     fun mk(javadocBase: JavadocBase, packageInfoList: PackageInfoList): ClassInfoList {
       val list = mutableListOf<ClassInfo>()
 
-      javadocBase.url("allclasses-index.html").let { allClasssIndex ->
-        val document = Utils.createDocument(allClasssIndex)
-        document.select("td.colFirst").forEach { td ->
-          td.select("a").forEach { a ->
-            val path = Paths.get(a.attr("href"))
-            val packageInfo = packageInfoList.list.filter { pac -> path.startsWith(pac.path.parent) }.firstOrNull()
-            if (packageInfo != null) {
-              list += ClassInfo(name = ClassName(a.text()), path = path, packageInfo = packageInfo)
+      packageInfoList.list.forEach { packageInfo ->
+        javadocBase.url(packageInfo.path.toString()).let { xxx ->
+          val document = Utils.createDocument(xxx)
+
+          val typeSummaryList = document.select("div.typeSummary")
+          //          println(typeSummaryList.size)
+          typeSummaryList.take(99).forEach { typeSummary ->
+            val ths = typeSummary.select("table tr > th.colFirst")
+            val classTypeName = ClassTypeName(name = ths.firstOrNull()?.text() ?: "?")
+            ths.take(1).forEach { th ->
+              list +=
+                  ClassInfo(
+                      name = ClassName(" --- ${classTypeName} ---"),
+                      path = Paths.get(""),
+                      packageInfo = packageInfo,
+                      classTypeName = classTypeName)
+            }
+            ths.drop(1).forEach { th ->
+              th.selectFirst("a")?.let { anchor ->
+                list +=
+                    ClassInfo(
+                        name = ClassName(th.text()),
+                        path = packageInfo.path.parent.resolve(anchor.attr("href")),
+                        packageInfo = packageInfo,
+                        classTypeName = classTypeName)
+              }
             }
           }
         }
       }
 
-      return ClassInfoList(list = list.toList().sorted())
+      return ClassInfoList(list = list.toList())
     }
   }
 }
