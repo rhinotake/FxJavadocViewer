@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
@@ -148,10 +147,13 @@
                                     <WebView fx:id="_webView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <ComboBox fx:id="_modulesComboBox" />
-                                          <ComboBox fx:id="_packagesComboBox" />
-                                          <ComboBox fx:id="_typesComboBox" />
-                                          <ComboBox fx:id="_classesComboBox" />
+                                          <Label fx:id="_moduleTitleLabel" text="Label" />
+                                          <Label text=" &gt; " />
+                                          <Label fx:id="_packageTitleLabel" text="Label" />
+                                          <Label text=" &gt; " />
+                                          <Label fx:id="_classTypeTitleLabel" text="Label" />
+                                          <Label text=" &gt; " />
+                                          <Label fx:id="_classTitleLabel" text="Label" />
                                        </children>
                                     </HBox>
                                  </children>

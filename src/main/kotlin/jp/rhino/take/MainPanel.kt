@@ -1,7 +1,6 @@
 package jp.rhino.take
 
 import javafx.fxml.FXML
-import javafx.scene.control.ComboBox
 import javafx.scene.control.Label
 import javafx.scene.control.ListView
 import javafx.scene.control.TextField
@@ -39,21 +38,41 @@ class MainPanel {
   @FXML
   private lateinit var _url: TextField
 
-  @FXML
-  private lateinit var _modulesComboBox: ComboBox<ModuleInfo>
+  //  @FXML
+  //  private lateinit var _modulesComboBox: ComboBox<ModuleInfo>
+  //
+  //  @FXML
+  //  private lateinit var _packagesComboBox: ComboBox<PackageInfo>
+  //
+  //  @FXML
+  //  private lateinit var _typesComboBox: ComboBox<ClassTypeName>
+  //
+  //  @FXML
+  //  private lateinit var _classesComboBox: ComboBox<ClassInfo>
 
   @FXML
-  private lateinit var _packagesComboBox: ComboBox<PackageInfo>
+  private lateinit var _moduleTitleLabel: Label
 
   @FXML
-  private lateinit var _typesComboBox: ComboBox<ClassTypeName>
+  private lateinit var _packageTitleLabel: Label
 
   @FXML
-  private lateinit var _classesComboBox: ComboBox<ClassInfo>
+  private lateinit var _classTypeTitleLabel: Label
+
+  @FXML
+  private lateinit var _classTitleLabel: Label
 
   @FXML
   fun initialize() {
+    _moduleTitleLabel.text = "--"
+    _packageTitleLabel.text = "--"
+    _classTypeTitleLabel.text = "--"
+    _classTitleLabel.text = "--"
 
+    val _modulesComboBox = LabelWithListView<ModuleInfo>(_moduleTitleLabel)
+    val _packagesComboBox = LabelWithListView<PackageInfo>(_packageTitleLabel)
+    val _typesComboBox = LabelWithListView<ClassTypeName>(_classTypeTitleLabel)
+    val _classesComboBox = LabelWithListView<ClassInfo>(_classTitleLabel)
     //    assert(
     //        _modulesList != null
     //    ) { "fx:id=\"_moduleList\" was not injected: check your FXML file 'MainPanel.fxml'." }
@@ -131,35 +150,41 @@ class MainPanel {
     //
     _modulesComboBox.itemsProperty().bind(_modulesList.itemsProperty())
     _packagesComboBox.itemsProperty().bind(_packagesList.itemsProperty())
-//    _typesComboBox.items.setAll(Arrays.asList(*ClassTypes.values()))
+    //    _typesComboBox.items.setAll(Arrays.asList(*ClassTypes.values()))
     _classesComboBox.itemsProperty().bind(_classesList.itemsProperty())
 
-    _modulesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+    _modulesComboBox.listView.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _modulesList.selectionModel.select(nv)
-      if(_modulesComboBox.isFocused){
+      if (_modulesComboBox.listView.isFocused) {
         _modulesList.scrollTo(nv)
       }
     }
-    _modulesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _modulesComboBox.selectionModel.select(nv) }
+    _modulesList.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+      _modulesComboBox.listView.selectionModel.select(nv)
+    }
 
-    _packagesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+    _packagesComboBox.listView.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _packagesList.selectionModel.select(nv)
-      if(_packagesComboBox.isFocused){
+      if (_packagesComboBox.listView.isFocused) {
         _packagesList.scrollTo(nv)
       }
     }
-    _packagesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _packagesComboBox.selectionModel.select(nv) }
+    _packagesList.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+      _packagesComboBox.listView.selectionModel.select(nv)
+    }
 
-    _classesComboBox.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+    _classesComboBox.listView.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       _classesList.selectionModel.select(nv)
-      if(_classesComboBox.isFocused) {
+      if (_classesComboBox.listView.isFocused) {
         _classesList.scrollTo(nv)
       }
     }
-    _classesList.selectionModel.selectedItemProperty().addListener { _, _, nv -> _classesComboBox.selectionModel.select(nv) }
+    _classesList.selectionModel.selectedItemProperty().addListener { _, _, nv ->
+      _classesComboBox.listView.selectionModel.select(nv)
+    }
 
     //
-    _webView.engine.locationProperty().addListener{_,_,nv ->
+    _webView.engine.locationProperty().addListener { _, _, nv ->
       _url.text = nv
     }
   }
