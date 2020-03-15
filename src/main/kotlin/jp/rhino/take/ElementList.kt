@@ -113,7 +113,7 @@ data class ModuleInfoList(val list: List<ModuleInfo>) {
     fun mk(javadocBase: JavadocBase): ModuleInfoList {
       val list = mutableListOf<ModuleInfo>()
 
-      javadocBase.url("index.html").let { allpackagesIndex ->
+      javadocBase.mkUrl("index.html").let { allpackagesIndex ->
         val document = Utils.createDocument(allpackagesIndex)
         document.select("th.colFirst").forEach { td ->
           td.select("a").forEach { a ->
@@ -148,7 +148,7 @@ data class PackageInfoList(val list: List<PackageInfo>) {
     fun mk(javadocBase: JavadocBase, moduleInfoList: ModuleInfoList): PackageInfoList {
       val list = mutableListOf<PackageInfo>()
 
-      javadocBase.url("allpackages-index.html").let { allpackagesIndex ->
+      javadocBase.mkUrl("allpackages-index.html").let { allpackagesIndex ->
         val document = Utils.createDocument(allpackagesIndex)
         document.select("th.colFirst").forEach { td ->
           td.select("a").forEach { a ->
@@ -205,7 +205,7 @@ data class ClassInfoList(val list: List<ClassInfo>) {
       val list = mutableListOf<ClassInfo>()
 
       packageInfoList.list.forEach { packageInfo ->
-        javadocBase.url(packageInfo.path.toString()).let { xxx ->
+        javadocBase.mkUrl(packageInfo.path.toString()).let { xxx ->
           val document = Utils.createDocument(xxx)
 
           val typeSummaryList = document.select("div.typeSummary")

@@ -18,7 +18,9 @@ class JavadocBase(val docBaseName: String) {
     }
   }
 
-  fun url(vararg path: String): String =
-      "${baseUrl}/${arrayOf(*path).joinToString("/")}".replace("//+".toRegex(), "/")
+  fun mkUrl(vararg path: String): String =
+      "${baseUrl}/${arrayOf(*path).joinToString("/")}"
+          .replace(System.getProperty("file.separator"), "/")
+          .replace("//+".toRegex(), "/")
 
 }

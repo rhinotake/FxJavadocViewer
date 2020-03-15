@@ -105,11 +105,11 @@ class MainPanel {
     val javadocBase = JavadocBase(System.getProperty("DOC_BASE"))
 
     _constantValuesLabel.setOnMouseClicked { ev ->
-      val url = javadocBase.url("constant-values.html")
+      val url = javadocBase.mkUrl("constant-values.html")
       _webView.engine.load(url)
     }
     _deprecatedLabel.setOnMouseClicked { ev ->
-      val url = javadocBase.url("deprecated-list.html")
+      val url = javadocBase.mkUrl("deprecated-list.html")
       _webView.engine.load(url)
     }
 
@@ -121,7 +121,7 @@ class MainPanel {
       if (nv != null) {
         _packagesList.items.setAll(listOf(PackageInfo.ALL) + elementList.packageInfoList.find(nv))
         //        val url = javadocBase.url(nv.name.name, "module-summary.html")
-        val url = javadocBase.url(nv.path.toString())
+        val url = javadocBase.mkUrl(nv.path.toString())
         println("url: ${url}")
         _webView.engine.load(url.toString())
       }
@@ -133,7 +133,7 @@ class MainPanel {
         _classesList.items.setAll(elementList.classInfoList.find(nv))
         _typesComboBox.items.setAll(listOf(ClassTypeName.ALL) + elementList.classInfoList.classTypeNameList(nv))
         //        val url = javadocBase.url(moduleName.name.name, nv.name.name.replace('.', '/'), "package-summary.html")
-        val url = javadocBase.url(nv.path.toString())
+        val url = javadocBase.mkUrl(nv.path.toString())
         println("url: ${url}")
         _webView.engine.load(url.toString())
       }
@@ -141,7 +141,7 @@ class MainPanel {
 
     _classesList.selectionModel.selectedItemProperty().addListener { _, _, nv ->
       if (nv != null) {
-        val url = javadocBase.url(nv.path.toString())
+        val url = javadocBase.mkUrl(nv.path.toString())
         println("url: ${url}")
         _webView.engine.load(url.toString())
       }
